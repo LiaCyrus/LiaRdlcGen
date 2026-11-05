@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="AriData">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>65594ac2-fbfe-4e1d-80c0-f1ad0babdff7</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Textbox Name="TemplatePlaceholder">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value></Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>TemplatePlaceholder</rd:DefaultName>
+            <Top>0cm</Top>
+            <Left>0cm</Left>
+            <Height>0.5cm</Height>
+            <Width>1cm</Width>
+            <Style />
+          </Textbox>
+        </ReportItems>
+        <Height>5cm</Height>
+        <Style />
+      </Body>
+      <Width>20cm</Width>
+      <Page>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>0.5cm</LeftMargin>
+        <RightMargin>0.5cm</RightMargin>
+        <TopMargin>0.5cm</TopMargin>
+        <BottomMargin>0.5cm</BottomMargin>
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="title">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <Code>Public Class RFuns
+    Public Shared DecimalSplit As String = ","
+    Public Shared ScalingSplit As String = "."
+
+    Public Shared Function NumberToString(ByVal n As Double, cFormat As String) As String
+        If n = 0 Then Return ""
+        Return n.ToString(cFormat)
+    End Function
+    Public Shared Function NumberToString(ByVal n As Double, digit As Integer) As String
+        If n = 0 Then Return ""
+        Dim cFormat As String = "###,###,###,###,###,##0.".Replace(",", DecimalSplit).Replace(".", ScalingSplit) + Microsoft.VisualBasic.Left("0000000000000000", digit)
+        Return n.ToString(cFormat)
+    End Function
+
+    Public Shared Function Replace(ByVal cText As String, ParamArray s As String()) As String
+        For i As Integer = 0 To s.Length - 1
+            cText = cText.Replace("%s" + (i + 1).ToString, s(i))
+        Next
+        Return cText
+    End Function
+
+    Public Shared Function ReplaceDate(ByVal cText As String, d As Date) As String
+        Return Replace(cText, d.ToString("dd"), d.ToString("MM"), d.ToString("yyyy"))
+    End Function
+    Public Shared Function ReplaceDate(ByVal cText As String, d1 As Date, d2 As Date) As String
+        Return Replace(cText, d1.ToString("dd/MM/yyyy"), d2.ToString("dd/MM/yyyy"))
+    End Function
+
+    Public Shared Function PrintFooterDateTime(ByVal cText As String) As String
+        Return Replace(cText, Now.ToString("yyyy-MM-dd HH:mm:ss"))
+    End Function
+    Public Shared Function PrintFooterDateTime(ByVal cText As String, ByVal xType As String) As String
+        If xType = "2" Then
+            Return Replace(cText, Now.ToString("yyyy-MM-dd"))
+        ElseIf xType = "3" Then
+            Return Replace(cText, Now.ToString("yyyy-MM-dd HH:mm:ss"))
+        Else
+            Return ""
+        End If
+    End Function
+    Public Shared Function PrintFooterPageNumber(ByVal cText As String, ByVal xType As String, ByVal cPage As String, ByVal cTotalPage As String) As String
+        If xType = "0" Then
+            Return ""
+        Else
+            Return Replace(cText, cPage, cTotalPage)
+        End If
+    End Function
+End Class</Code>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>00000000-0000-0000-0000-000000000000</rd:ReportID>
+</Report>
