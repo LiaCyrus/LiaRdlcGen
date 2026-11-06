@@ -1,6 +1,4 @@
 {
-  "version": "1.0",
-
   "page": {
     "width": 21,
     "height": 29.7,
@@ -12,29 +10,23 @@
       "right": 0.5
     }
   },
-
   "section": {
     "width": 20,
-
     "body": {
       "height": 5,
-
       "elements": [
         {
           "id": "txtCompanyName",
           "type": "textbox",
-
           "position": {
             "x": 0,
             "y": 0,
             "width": 10,
             "height": 0.6
           },
-
           "content": {
             "value": "Company Name"
           },
-
           "style": {
             "fontSize": 14,
             "fontWeight": "Bold",

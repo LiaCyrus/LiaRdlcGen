@@ -1,0 +1,22 @@
+{
+  "id": "textbox_1",
+  "type": "textbox",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "width": 2,
+    "height": 0.5
+  },
+  "content": {
+    "text": "Sample text"
+  },
+  "format": {
+    "font": {
+      "family": "Times New Roman",
+      "size": 12,
+      "weight": "normal"
+    },
+    "alignment": "left",
+    "verticalAlignment": "middle"
+  }
+}
