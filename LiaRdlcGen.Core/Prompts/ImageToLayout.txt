@@ -1,8 +1,247 @@
-Analyze this report image and reproduce its visual body layout as LiaRdlcGen components.
-Use centimeters and a 20cm content width. Return components in visual top-to-bottom order.
-Use type "title" for prominent centered headings, "textbox" for other text, and "tablix" for tables.
-Preserve visible text as value/header strings. For unknown dynamic values, use descriptive &placeholders.
-For table detail values, use descriptive !dataset.field placeholders and infer column widths and alignment.
-Do not recreate the logo, entity lines, page footer, or other content already supplied by the RDLC template.
-Assign unique RDLC-safe names containing only letters, digits, and underscores.
-Coordinates are relative to the generated body area before the template offset is applied.
+﻿Analyze the provided report image and reproduce its visual body layout using LiaRdlcGen components.
+
+Your task is to identify individual report components, extract their visible content, estimate their positions and dimensions, and return a structured JSON representation that can be converted into RDLC.
+
+## 1. Layout boundaries and coordinate system
+
+- Use centimeters (`cm`) for all positions and dimensions.
+- The report body has a fixed content width of `20cm`.
+- Scale the detected layout proportionally to fit this 20cm content width.
+- Coordinates are relative to the generated body area, before any RDLC template offset is applied.
+- The origin `(0, 0)` is the top-left corner of the generated body area.
+- `left` and `top` represent the component's top-left position.
+- `width` and `height` represent its bounding box.
+- Preserve the original relative spacing, alignment, and proportions as closely as possible.
+- Return components in visual top-to-bottom order. For components sharing approximately the same vertical position, order them from left to right.
+
+## 2. Supported component types
+
+Use only the following component types:
+
+### `title`
+For prominent centered headings, such as report titles.
+
+Examples:
+- Lệnh sản xuất
+- Phiếu nhập kho
+- BÁO CÁO TỔNG HỢP
+
+### `textbox`
+For all other textual content, including:
+
+- Labels and field names.
+- Dynamic values.
+- Dates and document numbers.
+- Descriptions.
+- Signature headings and instructions.
+- Printed names.
+- Small captions and annotations.
+
+Each visually independent text element must be a separate textbox.
+
+Do not combine multiple text elements into one textbox just because they appear on the same horizontal line.
+
+For example, a label and its corresponding value must be represented by separate textboxes.
+
+### `tablix`
+For structured tables containing headers, detail rows, and columns.
+
+A tablix must contain its column definitions and row/cell structure.
+
+Do not represent an entire table as a single textbox or rectangle.
+
+## 3. Textbox sizing and component separation
+
+Identify and separate every independent text element.
+
+### Textbox width rules
+
+Textboxes should use the available page width rather than tightly fitting their text content.
+
+- The default textbox width should extend from its left position to the right edge of the 20cm content area.
+- Calculate the width as `20cm - left`.
+- Do not estimate textbox width based on the number of characters or the visible text boundary.
+- Do not create narrow textboxes just because their content is short.
+- Preserve the original text alignment independently of textbox width.
+- Use the full available width even when the text occupies only a small portion of the textbox.
+
+### Multiple textboxes on the same row
+
+When multiple independent textboxes appear on the same horizontal row:
+
+- Keep each textbox separate.
+- A textbox must not overlap another textbox.
+- Its width should extend as far as possible without overlapping the next component.
+- For textboxes arranged from left to right, use the next component's left position as the boundary.
+- The last textbox on the row should extend to the right edge of the 20cm content area.
+
+For example, given:
+
+`Đối tượng    000000000000001 - CÔNG TY TNHH TRAVELOKA VIỆT NAM`
+
+Represent it as:
+
+- `RecipientLabel`: starts at the left position and ends where the value textbox begins.
+- `RecipientValue`: starts at its detected left position and extends to the right edge of the content area.
+
+### Vertical sizing
+
+- Estimate textbox height based on the actual text line height and visual spacing.
+- Preserve meaningful vertical spacing between components.
+- Do not increase textbox height unnecessarily.
+- Allow sufficient height for multiline content when required.
+
+### General separation rules
+
+- Each independent heading must be its own component.
+- Each label must be its own textbox.
+- Each corresponding value must be its own textbox.
+- Text on different lines must be separate textboxes unless they clearly form one paragraph.
+- Do not merge adjacent textboxes.
+- Do not create unnecessary components for whitespace.
+- Do not create components for visual elements already supplied by the RDLC template.
+
+## 4. Text extraction and dynamic values
+
+Preserve all visible static text exactly as it appears in the image.
+
+Requirements:
+
+- Preserve Vietnamese characters and diacritics.
+- Preserve punctuation, capitalization, and numbering.
+- Do not translate or paraphrase text.
+- Do not silently correct spelling.
+- Preserve meaningful line breaks.
+
+For values that appear to be dynamic or data-driven, use descriptive placeholders prefixed with `&`.
+
+Examples:
+
+- `&document_number`
+- `&document_date`
+- `&recipient`
+- `&description`
+- `&priority`
+- `&warehouse`
+- `&signature_date`
+
+Do not invent actual values for unknown dynamic content.
+
+Keep static labels separate from dynamic values.
+
+## 5. Table detection and reconstruction
+
+For every table, identify:
+
+- Total number of columns.
+- Number of visible rows.
+- Column widths.
+- Row heights.
+- Header text.
+- Detail cell content.
+- Horizontal alignment.
+- Vertical alignment.
+- Visible borders.
+- Merged cells, if any.
+
+Use descriptive dataset placeholders prefixed with `!` for dynamic detail values.
+
+Examples:
+
+- `!dataset.product_code`
+- `!dataset.product_name`
+- `!dataset.unit`
+- `!dataset.warehouse_code`
+- `!dataset.quantity`
+
+Table requirements:
+
+- Preserve visible header text exactly.
+- Infer column widths proportionally from the image.
+- Column widths must add up to the tablix width.
+- Use consistent column boundaries across all rows.
+- Infer appropriate text alignment for each column.
+- Use right alignment for numeric quantities when visually appropriate.
+- Use center alignment for short codes and units when visually appropriate.
+- Use left alignment for descriptive text.
+- Preserve empty cells.
+- Represent merged cells explicitly if the component structure supports them.
+- Do not create separate textboxes for text that belongs inside a tablix cell.
+
+## 6. Component styles
+
+Infer visual styles from the image where possible.
+
+For text components, identify:
+
+- Font size in points.
+- Font weight (`Normal` or `Bold`).
+- Font style (`Normal` or `Italic`).
+- Text alignment (`Left`, `Center`, or `Right`).
+- Vertical alignment (`Top`, `Middle`, or `Bottom`).
+- Text color when distinguishable.
+
+For tablix components, identify:
+
+- Border visibility and thickness.
+- Border color.
+- Cell padding where visually distinguishable.
+- Header formatting.
+- Detail row formatting.
+- Cell alignment.
+
+Do not invent elaborate styling that is not visible in the source image.
+
+## 7. Excluded elements
+
+Do NOT recreate the following because they are already supplied by the RDLC template:
+
+- Company logo.
+- Company header information.
+- Entity information lines.
+- Page footer.
+- Page numbers.
+- Template-provided borders, decorations, or other fixed content.
+
+Only generate the report-specific body components.
+
+Do not include excluded elements in the output JSON.
+
+## 8. Naming conventions
+
+Every component must have a unique name.
+
+Names must:
+- Contain only letters, digits, and underscores.
+- Start with a letter or underscore.
+- Be descriptive of the component's purpose.
+- Be suitable for use as RDLC component names.
+
+Examples:
+
+- `DocumentTitle`
+- `DocumentDate`
+- `DocumentNumber`
+- `RecipientLabel`
+- `RecipientValue`
+- `ProductTable`
+- `SignaturePreparedBy`
+
+Do not use spaces, hyphens, Vietnamese diacritics, or special characters in component names.
+
+## 9. Output requirements
+
+Return only valid JSON.
+
+- Do not include Markdown code fences.
+- Do not include explanations outside the JSON.
+- Do not generate RDLC XML.
+- Do not generate application code.
+- Do not include components that belong to the RDLC template.
+- Do not invent information that cannot be identified from the image.
+
+Return components in visual top-to-bottom order.
+
+If a position, dimension, or style cannot be determined confidently, provide your best estimate rather than omitting the component.
+
+Include a confidence score for each component when possible.
