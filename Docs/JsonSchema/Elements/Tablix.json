@@ -1,0 +1,53 @@
+{
+  "type": "table",
+  "dataset": "d2",
+  "style": "standard-grid",
+  "repeatHeader": true,
+  "columns": [
+    {
+      "field": "stt",
+      "label": "&stt",
+      "width": "small",
+      "align": "center"
+    },
+    {
+      "field": "ma_vt",
+      "label": "&ma_vt",
+      "width": "medium"
+    },
+    {
+      "field": "ten_vt",
+      "label": "&ten_vt",
+      "width": "fill",
+      "grow": true
+    },
+    {
+      "field": "ten_dvt",
+      "label": "&ten_dvt",
+      "width": "medium",
+      "align": "center"
+    },
+    {
+      "field": "ma_kho",
+      "label": "&ma_kho",
+      "width": "medium",
+      "align": "center"
+    },
+    {
+      "field": "so_luong",
+      "label": "&so_luong",
+      "width": "medium",
+      "align": "right",
+      "format": "number"
+    }
+  ],
+  "sort": [
+    {
+      "by": "stt",
+      "direction": "ascending"
+    }
+  ],
+  "groups": [],
+  "totals": [],
+  "emptyText": "&no_data"
+}

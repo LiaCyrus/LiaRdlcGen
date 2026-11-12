@@ -1,0 +1,34 @@
+{
+  "type": "container",
+  "layout": "row",
+  "gap": "normal",
+  "keepTogether": true,
+  "items": [
+    {
+      "type": "image",
+      "value": "!d1.image_ulogo",
+      "source": "database",
+      "fit": "contain",
+      "size": "logo"
+    },
+    {
+      "type": "stack",
+      "grow": 1,
+      "align": "center",
+      "items": [
+        {
+          "type": "text",
+          "value": "&title",
+          "role": "report-title",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "value": "!d1.ten_kh",
+          "role": "subtitle",
+          "align": "center"
+        }
+      ]
+    }
+  ]
+}

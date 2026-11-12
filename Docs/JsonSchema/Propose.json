@@ -1,0 +1,93 @@
+{
+  "version": "1.0",
+  "template": "business-document",
+  "page": {
+    "size": "A4",
+    "orientation": "portrait",
+    "margin": "compact"
+  },
+  "theme": "default",
+  "data": {
+    "header": "d1",
+    "detail": "d2"
+  },
+  "parameters": [
+    {
+      "name": "title",
+      "type": "string"
+    }
+  ],
+  "sections": [
+    {
+      "type": "title",
+      "logo": {
+        "value": "!d1.image_ulogo",
+        "source": "database"
+      },
+      "title": "&title",
+      "lines": [
+        "!d1.ten_kh",
+        "!d1.dien_giai"
+      ]
+    },
+    {
+      "type": "field-grid",
+      "columns": 2,
+      "fields": [
+        {
+          "label": "&so_ct",
+          "value": "!d1.so_ct"
+        },
+        {
+          "label": "&ngay_ct",
+          "value": "!d1.ngay_ct",
+          "format": "date"
+        },
+        {
+          "label": "&customer",
+          "value": "!d1.ten_kh",
+          "span": 2
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "dataset": "d2",
+      "columns": [
+        {
+          "field": "stt",
+          "label": "&stt",
+          "width": "small",
+          "align": "center"
+        },
+        {
+          "field": "ten_vt",
+          "label": "&ten_vt",
+          "width": "fill"
+        },
+        {
+          "field": "so_luong",
+          "label": "&so_luong",
+          "width": "medium",
+          "align": "right",
+          "format": "number"
+        }
+      ]
+    },
+    {
+      "type": "signature",
+      "roles": [
+        {
+          "label": "&creator"
+        },
+        {
+          "label": "&approver"
+        }
+      ]
+    }
+  ],
+  "footer": {
+    "left": "#Code.RFuns.ReplaceDate(&print_date, Globals!ExecutionTime)",
+    "right": "#Code.RFuns.PageNumber()"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "image",
+  "value": "!d1.image_ulogo",
+  "source": "database",
+  "fit": "contain",
+  "size": "logo",
+  "alt": "Company logo"
+}

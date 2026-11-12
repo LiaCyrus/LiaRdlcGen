@@ -12,4 +12,10 @@
     <ProjectReference Include="..\LiaRdlcGen.Core\LiaRdlcGen.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\LiaRdlcGen.Core\Templates\*.rdlc" Link="Templates\%(Filename)%(Extension)">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

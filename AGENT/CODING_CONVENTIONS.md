@@ -36,5 +36,7 @@ Follow a compact C# formatting style.
 
 6. **Do not unnecessarily split method calls, parameter lists, LINQ expressions, or property declarations** across multiple lines.
 
+7. **Do not remove or modify existing comments without a specific reason.** Preserve comments when editing nearby code. Change or remove a comment only when it is incorrect, obsolete, misleading, or directly affected by the code change.
+
 **General rule:** Prefer compact, readable code over vertical expansion. Do not sacrifice readability merely to keep everything on one line.
 

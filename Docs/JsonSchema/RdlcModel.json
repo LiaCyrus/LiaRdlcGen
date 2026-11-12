@@ -1,0 +1,282 @@
+{
+  "autoRefresh": "0",
+  "dataSources": [
+    {
+      "name": "AriData",
+      "connectionProperties": {
+        "dataProvider": "System.Data.DataSet",
+        "connectString": "/* Local Connection */"
+      },
+      "dataSourceId": "65594ac2-fbfe-4e1d-80c0-f1ad0babdff7"
+    }
+  ],
+  "dataSets": [
+    {
+      "name": "d2",
+      "query": {
+        "dataSourceName": "AriData",
+        "commandText": "/* Local Query */",
+        "queryParameters": []
+      },
+      "fields": [
+        {
+          "name": "stt",
+          "dataField": "stt",
+          "typeName": "System.Int32"
+        },
+        {
+          "name": "ten_vt",
+          "dataField": "ten_vt",
+          "typeName": "System.String"
+        }
+      ],
+      "filters": []
+    }
+  ],
+  "reportParameters": [
+    {
+      "name": "title",
+      "dataType": "String",
+      "nullable": true,
+      "allowBlank": true,
+      "prompt": "Report title",
+      "defaultValues": []
+    }
+  ],
+  "embeddedImages": [],
+  "reportSections": [
+    {
+      "body": {
+        "reportItems": [
+          {
+            "type": "textbox",
+            "name": "txtTitle",
+            "top": "0cm",
+            "left": "0cm",
+            "height": "0.8cm",
+            "width": "20cm",
+            "canGrow": true,
+            "keepTogether": true,
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "&title",
+                    "style": {
+                      "fontFamily": "Times New Roman",
+                      "fontSize": "16pt",
+                      "fontWeight": "Bold",
+                      "textAlign": "Center"
+                    }
+                  }
+                ],
+                "style": {}
+              }
+            ],
+            "style": {
+              "textAlign": "Center",
+              "verticalAlign": "Middle"
+            }
+          },
+          {
+            "type": "tablix",
+            "name": "tblDetail",
+            "top": "1cm",
+            "left": "0cm",
+            "height": "1cm",
+            "width": "20cm",
+            "dataSetName": "d2",
+            "tablixBody": {
+              "tablixColumns": [
+                {
+                  "width": "2cm"
+                },
+                {
+                  "width": "18cm"
+                }
+              ],
+              "tablixRows": [
+                {
+                  "height": "0.5cm",
+                  "tablixCells": [
+                    {
+                      "cellContents": {
+                        "reportItem": {
+                          "type": "textbox",
+                          "name": "txtHeaderStt",
+                          "paragraphs": [
+                            {
+                              "textRuns": [
+                                {
+                                  "value": "&stt"
+                                }
+                              ]
+                            }
+                          ],
+                          "style": {
+                            "fontWeight": "Bold",
+                            "textAlign": "Center",
+                            "border": {
+                              "style": "Solid",
+                              "width": "0.5pt"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "cellContents": {
+                        "reportItem": {
+                          "type": "textbox",
+                          "name": "txtHeaderName",
+                          "paragraphs": [
+                            {
+                              "textRuns": [
+                                {
+                                  "value": "&ten_vt"
+                                }
+                              ]
+                            }
+                          ],
+                          "style": {
+                            "fontWeight": "Bold",
+                            "textAlign": "Center",
+                            "border": {
+                              "style": "Solid",
+                              "width": "0.5pt"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "height": "0.5cm",
+                  "tablixCells": [
+                    {
+                      "cellContents": {
+                        "reportItem": {
+                          "type": "textbox",
+                          "name": "txtDetailStt",
+                          "paragraphs": [
+                            {
+                              "textRuns": [
+                                {
+                                  "value": "=Fields!stt.Value"
+                                }
+                              ]
+                            }
+                          ],
+                          "style": {
+                            "textAlign": "Center",
+                            "border": {
+                              "style": "Solid",
+                              "width": "0.5pt"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "cellContents": {
+                        "reportItem": {
+                          "type": "textbox",
+                          "name": "txtDetailName",
+                          "canGrow": true,
+                          "paragraphs": [
+                            {
+                              "textRuns": [
+                                {
+                                  "value": "=Fields!ten_vt.Value"
+                                }
+                              ]
+                            }
+                          ],
+                          "style": {
+                            "border": {
+                              "style": "Solid",
+                              "width": "0.5pt"
+                            },
+                            "paddingLeft": "2pt",
+                            "paddingRight": "2pt"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "tablixColumnHierarchy": {
+              "tablixMembers": [
+                {},
+                {}
+              ]
+            },
+            "tablixRowHierarchy": {
+              "tablixMembers": [
+                {
+                  "keepWithGroup": "After",
+                  "repeatOnNewPage": true
+                },
+                {
+                  "group": {
+                    "name": "DetailGroup",
+                    "groupExpressions": [],
+                    "filters": []
+                  }
+                }
+              ]
+            },
+            "filters": [],
+            "sortExpressions": [],
+            "repeatRowHeaders": true,
+            "keepTogether": true
+          }
+        ],
+        "height": "5cm",
+        "style": {}
+      },
+      "width": "20cm",
+      "page": {
+        "pageFooter": {
+          "reportItems": [
+            {
+              "type": "textbox",
+              "name": "txtPageNumber",
+              "top": "0cm",
+              "left": "15cm",
+              "height": "0.5cm",
+              "width": "5cm",
+              "paragraphs": [
+                {
+                  "textRuns": [
+                    {
+                      "value": "=Globals!PageNumber"
+                    }
+                  ]
+                }
+              ],
+              "style": {
+                "textAlign": "Right"
+              }
+            }
+          ],
+          "height": "0.5cm",
+          "printOnFirstPage": true,
+          "printOnLastPage": true
+        },
+        "pageHeight": "29.7cm",
+        "pageWidth": "21cm",
+        "leftMargin": "0.5cm",
+        "rightMargin": "0.5cm",
+        "topMargin": "0.5cm",
+        "bottomMargin": "0.5cm"
+      }
+    }
+  ],
+  "language": "en-US",
+  "reportUnitType": "Cm",
+  "reportId": "00000000-0000-0000-0000-000000000000"
+}
