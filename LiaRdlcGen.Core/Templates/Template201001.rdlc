@@ -35,12 +35,253 @@
             <Width>1cm</Width>
             <Style />
           </Textbox>
+          <Rectangle Name="EntityLines">
+            <ReportItems>
+              <Image Name="image_ulogo">
+                <Source>Database</Source>
+                <Value>=First(Fields!image_ulogo.Value, "d1")</Value>
+                <MIMEType>image/png</MIMEType>
+                <Sizing>FitProportional</Sizing>
+                <Height>2.5cm</Height>
+                <Width>2.5cm</Width>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                </Style>
+              </Image>
+              <Textbox Name="Entity_Line1">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>&amp;Entity_Line1</Value>
+                        <Style>
+                          <FontFamily>Times New Roman</FontFamily>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Entity_Line1</rd:DefaultName>
+                <Left>2.5cm</Left>
+                <Height>0.5cm</Height>
+                <Width>17.5cm</Width>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <VerticalAlign>Middle</VerticalAlign>
+                  <PaddingLeft>0.1cm</PaddingLeft>
+                  <PaddingRight>0.1cm</PaddingRight>
+                  <PaddingTop>0.1cm</PaddingTop>
+                  <PaddingBottom>0.1cm</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Entity_Line2">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>&amp;Entity_Line2</Value>
+                        <Style>
+                          <FontFamily>Times New Roman</FontFamily>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Entity_Line2</rd:DefaultName>
+                <Top>0.5cm</Top>
+                <Left>2.5cm</Left>
+                <Height>0.5cm</Height>
+                <Width>17.5cm</Width>
+                <ZIndex>1</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <VerticalAlign>Middle</VerticalAlign>
+                  <PaddingLeft>0.1cm</PaddingLeft>
+                  <PaddingRight>0.1cm</PaddingRight>
+                  <PaddingTop>0.1cm</PaddingTop>
+                  <PaddingBottom>0.1cm</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Entity_Line3">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>&amp;Entity_Line3</Value>
+                        <Style>
+                          <FontFamily>Times New Roman</FontFamily>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Entity_Line3</rd:DefaultName>
+                <Top>1cm</Top>
+                <Left>2.5cm</Left>
+                <Height>0.5cm</Height>
+                <Width>17.5cm</Width>
+                <ZIndex>2</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <VerticalAlign>Middle</VerticalAlign>
+                  <PaddingLeft>0.1cm</PaddingLeft>
+                  <PaddingRight>0.1cm</PaddingRight>
+                  <PaddingTop>0.1cm</PaddingTop>
+                  <PaddingBottom>0.1cm</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Entity_Line4">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>&amp;Entity_Line4</Value>
+                        <Style>
+                          <FontFamily>Times New Roman</FontFamily>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Entity_Line4</rd:DefaultName>
+                <Top>1.5cm</Top>
+                <Left>2.5cm</Left>
+                <Height>0.5cm</Height>
+                <Width>17.5cm</Width>
+                <ZIndex>3</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <VerticalAlign>Middle</VerticalAlign>
+                  <PaddingLeft>0.1cm</PaddingLeft>
+                  <PaddingRight>0.1cm</PaddingRight>
+                  <PaddingTop>0.1cm</PaddingTop>
+                  <PaddingBottom>0.1cm</PaddingBottom>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Height>2.5cm</Height>
+            <Width>20cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
         </ReportItems>
         <Height>5cm</Height>
         <Style />
       </Body>
       <Width>20cm</Width>
       <Page>
+        <PageFooter>
+          <Height>0.5cm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="txtPrintDateTime">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value EvaluationMode="Constant">#[$].PrintFooterDateTime([&amp;footerDateTime], [&amp;print_page_number])</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>times New Roman</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Height>0.5cm</Height>
+              <Width>10cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Top</VerticalAlign>
+                <PaddingLeft>0.1cm</PaddingLeft>
+                <PaddingRight>0.1cm</PaddingRight>
+                <PaddingTop>0.1cm</PaddingTop>
+                <PaddingBottom>0.1cm</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="txtPageIndex">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value EvaluationMode="Constant">#[$].PrintFooterPageNumber([&amp;page], [&amp;print_page_number], Globals!PageNumber, Globals!TotalPages)</Value>
+                      <Style>
+                        <FontFamily>times New Roman</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Left>10cm</Left>
+              <Height>0.5cm</Height>
+              <Width>10cm</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+                <PaddingLeft>0.1cm</PaddingLeft>
+                <PaddingRight>0.1cm</PaddingRight>
+                <PaddingTop>0.1cm</PaddingTop>
+                <PaddingBottom>0.1cm</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
         <LeftMargin>0.5cm</LeftMargin>

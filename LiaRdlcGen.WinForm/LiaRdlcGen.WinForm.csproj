@@ -13,6 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\LiaRdlcGen.Core\ComponentTemplates\*.json" Link="ComponentTemplates\%(Filename)%(Extension)">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\LiaRdlcGen.Core\Prompts\*.txt" Link="Prompts\%(Filename)%(Extension)">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="..\LiaRdlcGen.Core\Templates\*.rdlc" Link="Templates\%(Filename)%(Extension)">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

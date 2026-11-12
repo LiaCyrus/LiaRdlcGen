@@ -13,12 +13,94 @@ dotnet run --project .\LiaRdlcGen.WinForm\LiaRdlcGen.WinForm.csproj
 ## Generate a Report
 
 1. Select an RDLC template.
-2. Enter direct RDLC model JSON or click **Load sample**.
-3. Optionally click **Format JSON**.
-4. Click **Create RDLC...**.
-5. Select the output filename.
+2. Select **Full report** or **Template items** mode.
+3. Enter direct RDLC model JSON or click **Load sample**.
+4. Optionally click **Format JSON**.
+5. Click **Create RDLC...**.
+6. Select the output filename.
 
 The application deserializes the JSON, generates RDLC content, merges it into the selected template, and saves the result.
+
+## Generate JSON from an Image
+
+1. Enter a Gemini API key and model, then click **Save AI settings**.
+2. Click **Select image...** and choose a PNG or JPEG report image smaller than 15 MB.
+3. Click **Generate JSON**.
+4. Review and adjust the generated component JSON.
+5. Click **Create RDLC...**.
+
+The default model is `gemini-3.5-flash`. Gemini structured output restricts the result to the supported `title`, `textbox`, and `tablix` component contract. AI-generated dimensions and text can still be inaccurate, so review the JSON before generating RDLC.
+
+The image-analysis instructions are loaded at runtime from `Prompts/ImageToLayout.txt`. Edit or replace that file to refine AI behavior without changing C# code.
+
+Settings are stored for the current Windows user under `%LOCALAPPDATA%\LiaRdlcGen\settings.json`. The API key is stored as plain text in that user-local file; do not use this option on a shared Windows account.
+
+### Generation Modes
+
+- **Template items** is the default. It takes only the report items from the first generated report section's body and replaces the single template report item named `TemplatePlaceholder` with those items in their original order. Their `Top` positions are shifted below the lowest existing item in the same template container, and the container height grows when needed.
+- **Full report** replaces matching top-level template elements with the generated report elements.
+
+Template items mode preserves all other template content, including datasets, entity information, logo, page settings, page footer, custom code, and metadata. The selected template must contain exactly one report item whose `Name` is `TemplatePlaceholder`.
+
+Template items mode also accepts concise component JSON:
+
+```json
+{
+  "components": [
+    {
+      "type": "title",
+      "name": "txtTitle",
+      "value": "&title",
+      "top": "0cm",
+      "left": "0cm",
+      "width": "20cm"
+    },
+    {
+      "type": "textbox",
+      "name": "txtContent",
+      "value": "Normal textbox content",
+      "top": "1cm",
+      "left": "0cm",
+      "width": "20cm"
+    }
+  ]
+}
+```
+
+Component types are declared in `ComponentTemplates/*.json`. Each declaration contains a direct RDLC `reportItem` template, including defaults such as fonts, padding, alignment, and dimensions. Add another declaration to create a new AI-facing component type without changing C# code. A component can supply an `overrides` object to replace or extend direct report-item properties.
+
+The included `tablix` component provides the visual defaults from the reference report while the AI supplies the detected columns, widths, labels, values, and alignment:
+
+```json
+{
+  "type": "tablix",
+  "name": "Detail",
+  "top": "2cm",
+  "left": "0cm",
+  "width": "20cm",
+  "columns": [
+    {
+      "name": "itemCode",
+      "width": "4cm",
+      "header": "Item code",
+      "value": "!d2.item_code",
+      "textAlign": "Left"
+    },
+    {
+      "name": "quantity",
+      "width": "3cm",
+      "header": "Quantity",
+      "value": "!d2.quantity",
+      "textAlign": "Right",
+      "format": "round_qty"
+    }
+  ]
+}
+```
+
+`dataSetName` is optional. Dataset definitions are not added to the RDLC template; database mapping remains separate from the image-derived visual layout.
+
+**Load sample** loads the concise title and textbox example in template items mode. In full report mode it loads the complete direct-model sample.
 
 ## JSON Format
 

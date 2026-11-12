@@ -1,0 +1,58 @@
+{
+  "templates": [
+    {
+      "type": "tablix",
+      "generator": "tablix",
+      "settings": {
+        "rowHeight": "0.5cm",
+        "headerTextRunStyle": {
+          "fontFamily": "Times New Roman",
+          "fontWeight": "Bold"
+        },
+        "detailTextRunStyle": {
+          "fontFamily": "Times New Roman"
+        },
+        "headerCellStyle": {
+          "border": {
+            "style": "Solid",
+            "width": "0.5pt"
+          },
+          "verticalAlign": "Middle",
+          "paddingLeft": "0.1cm",
+          "paddingRight": "0.1cm",
+          "paddingTop": "0.1cm",
+          "paddingBottom": "0.1cm"
+        },
+        "detailCellStyle": {
+          "border": {
+            "style": "Solid",
+            "width": "0.5pt"
+          },
+          "topBorder": {
+            "style": "None"
+          },
+          "bottomBorder": {
+            "style": "Dashed"
+          },
+          "verticalAlign": "Middle",
+          "paddingLeft": "0.1cm",
+          "paddingRight": "0.1cm",
+          "paddingTop": "0.1cm",
+          "paddingBottom": "0.1cm"
+        },
+        "tablixStyle": {
+          "border": {
+            "style": "Solid",
+            "width": "0.5pt"
+          },
+          "topBorder": {
+            "width": "1pt"
+          },
+          "bottomBorder": {
+            "width": "1pt"
+          }
+        }
+      }
+    }
+  ]
+}

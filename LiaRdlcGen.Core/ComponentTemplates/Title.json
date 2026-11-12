@@ -1,0 +1,39 @@
+{
+  "templates": [
+    {
+      "type": "title",
+      "reportItem": {
+        "type": "textbox",
+        "name": "",
+        "height": "0.7cm",
+        "width": "20cm",
+        "canGrow": true,
+        "keepTogether": true,
+        "paragraphs": [
+          {
+            "textRuns": [
+              {
+                "value": "",
+                "style": {
+                  "fontFamily": "Times New Roman",
+                  "fontSize": "16pt",
+                  "fontWeight": "Bold"
+                }
+              }
+            ],
+            "style": {
+              "textAlign": "Center"
+            }
+          }
+        ],
+        "style": {
+          "verticalAlign": "Middle",
+          "paddingLeft": "0.1cm",
+          "paddingRight": "0.1cm",
+          "paddingTop": "0.1cm",
+          "paddingBottom": "0.1cm"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+Analyze this report image and reproduce its visual body layout as LiaRdlcGen components.
+Use centimeters and a 20cm content width. Return components in visual top-to-bottom order.
+Use type "title" for prominent centered headings, "textbox" for other text, and "tablix" for tables.
+Preserve visible text as value/header strings. For unknown dynamic values, use descriptive &placeholders.
+For table detail values, use descriptive !dataset.field placeholders and infer column widths and alignment.
+Do not recreate the logo, entity lines, page footer, or other content already supplied by the RDLC template.
+Assign unique RDLC-safe names containing only letters, digits, and underscores.
+Coordinates are relative to the generated body area before the template offset is applied.

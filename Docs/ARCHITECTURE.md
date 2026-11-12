@@ -74,12 +74,14 @@ It:
 1. Deserializes and generates the direct JSON model.
 2. Loads the selected template with `XDocument`.
 3. Confirms both documents use the same report root namespace.
-4. Replaces matching top-level elements by qualified XML name.
-5. Adds generated top-level elements that are not already present.
-6. Retains template-only elements.
-7. Saves the merged document.
+4. Applies the selected generation mode.
+5. Saves the merged document.
 
-The merge is currently top-level. It does not recursively merge individual report items or datasets.
+Full report mode replaces matching top-level elements by qualified XML name, adds missing generated elements, and retains template-only top-level elements.
+
+Template items mode requires exactly one generated report section and one template report item named `TemplatePlaceholder`. It replaces that placeholder with the generated first section's body report items. All other template content remains unchanged.
+
+Neither mode recursively merges individual datasets or existing report items.
 
 ## WinForms Application
 
@@ -100,15 +102,16 @@ Templates are discovered from:
 
 The WinForms project copies every source template from `LiaRdlcGen.Core/Templates`.
 
-## Future Abstract Components
+## Declarable Components
 
-The future AI-facing format should not replace the direct model. It should compile into it:
+Template items mode supports a concise AI-facing component format that compiles into the direct model:
 
 ```text
-Abstract component JSON
-    -> component expansion and layout
+Component JSON
+    -> ComponentTemplateCompiler
+    -> declarations from ComponentTemplates/*.json
     -> direct RdlcReport model
     -> existing generation pipeline
 ```
 
-Abstract components should expose named parts with optional direct-model overrides. This keeps ordinary AI output concise while preserving full control when needed.
+Each catalog declaration maps a semantic `type` to a direct `reportItem` template. Component input supplies its name, value, position, dimensions, and optional recursive direct-model overrides. New semantic textbox styles can therefore be added without recompiling the application.

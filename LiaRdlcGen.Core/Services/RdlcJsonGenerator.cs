@@ -14,6 +14,11 @@ public class RdlcJsonGenerator
         return contentGenerator.GenerateContent(report);
     }
 
+    public string GenerateContent(RdlcReport report)
+    {
+        return contentGenerator.GenerateContent(report);
+    }
+
     public void Generate(string json, string outputPath)
     {
         RdlcReport report = jsonService.Deserialize(json);
